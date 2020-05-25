@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+input {
+  height: 40px;
+  width: 400px;
+  font-size: 32px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  width: 400px;
+  margin: 0 auto;
+  padding-inline-start: 0;
+}
+
+li {
+  height: 40px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: darkgray;
+}
+
+li.active {
+  background-color: aqua;
+}
+
