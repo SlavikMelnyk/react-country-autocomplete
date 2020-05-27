@@ -40,7 +40,6 @@ class Autocomplete extends React.Component {
     }
 
     handleCountryClick(e) {
-        console.log(8);
         const searchQuery = e.target.innerText;
         this.setState({
             searchQuery,
@@ -83,15 +82,17 @@ class Autocomplete extends React.Component {
                     onFocus={e => this.setState({completionVisible:true})}
                     onBlur={e => this.setState({completionVisible:false})}
                 />
-                <ul onMouseDown={this.handleCountryClick}>
-                    {this.state.completionVisible && this.state.matchedCountries.map((el, i) =>
-                        <li
-                            key={el.country}
-                            className={`country ${this.state.activeEl === i ? 'active' : null}`}
-                            dangerouslySetInnerHTML={{__html: this.getSplittedText(el.country)}}
-                        />
-                    )}
-                </ul>
+                {this.state.completionVisible && this.state.matchedCountries.length > 0 &&
+                    <ul onMouseDown={this.handleCountryClick}>
+                        {this.state.matchedCountries.map((el, i) =>
+                            <li
+                                key={el.country}
+                                className={`country ${this.state.activeEl === i ? 'active' : null}`}
+                                dangerouslySetInnerHTML={{__html: this.getSplittedText(el.country)}}
+                            />
+                        )}
+                    </ul>
+                }
             </>
         )
     }
