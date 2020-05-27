@@ -10,6 +10,8 @@ input {
 }
 
 ul {
+  position: relative;
+  top: 20px;
   list-style-type: none;
   width: 400px;
   margin: 0 auto;
@@ -17,7 +19,7 @@ ul {
 }
 
 li {
-  height: 40px;
+  padding: 5px;
   font-size: 30px;
   cursor: pointer;
 }

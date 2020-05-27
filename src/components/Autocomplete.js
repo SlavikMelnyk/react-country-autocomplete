@@ -67,6 +67,12 @@ class Autocomplete extends React.Component {
         }
     }
 
+    getSplittedText(text) {
+        const indexOfFirstMatchingLetter = text.toLowerCase().indexOf(this.state.searchQuery.toLowerCase());
+        const partToReplace = text.slice(indexOfFirstMatchingLetter, indexOfFirstMatchingLetter + this.state.searchQuery.length);
+        return text.replace(partToReplace, `<mark>${partToReplace}</mark>`);
+    }
+
     render() {
         return (
             <>
@@ -79,7 +85,11 @@ class Autocomplete extends React.Component {
                 />
                 <ul onMouseDown={this.handleCountryClick}>
                     {this.state.completionVisible && this.state.matchedCountries.map((el, i) =>
-                        <li key={el.country} className={`country ${this.state.activeEl === i ? 'active' : null}`}>{el.country}</li>
+                        <li
+                            key={el.country}
+                            className={`country ${this.state.activeEl === i ? 'active' : null}`}
+                            dangerouslySetInnerHTML={{__html: this.getSplittedText(el.country)}}
+                        />
                     )}
                 </ul>
             </>
