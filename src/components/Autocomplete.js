@@ -39,7 +39,7 @@ class Autocomplete extends React.Component {
         }));
     }
 
-    handleCountryClick(e) {
+    handleCountryClick(e) { // checks the suggestion
         const searchQuery = e.target.innerText;
         this.setState({
             searchQuery,
@@ -47,7 +47,7 @@ class Autocomplete extends React.Component {
         });
     }
 
-    handleKeyDownClickOnFocusedInput(e) {
+    handleKeyDownClickOnFocusedInput(e) { // adds ability to check and to move through suggestions by keyboard
         const {activeEl, matchedCountries} = this.state;
         if (e.keyCode === 38 && activeEl > 0) {
             this.setState( prevState => ({
@@ -66,10 +66,10 @@ class Autocomplete extends React.Component {
         }
     }
 
-    getSplittedText(text) {
+    getSplittedText(text) { // makes matched text highlighted
         const indexOfFirstMatchingLetter = text.toLowerCase().indexOf(this.state.searchQuery.toLowerCase());
-        const partToReplace = text.slice(indexOfFirstMatchingLetter, indexOfFirstMatchingLetter + this.state.searchQuery.length);
-        return text.replace(partToReplace, `<mark>${partToReplace}</mark>`);
+        const highlightedPart = text.slice(indexOfFirstMatchingLetter, indexOfFirstMatchingLetter + this.state.searchQuery.length);
+        return text.replace(highlightedPart, `<mark>${highlightedPart}</mark>`);
     }
 
     render() {
